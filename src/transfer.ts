@@ -87,10 +87,10 @@ export const transfer = async (sender: Keypair, amountIn: number, ethTo: string)
     });
     transaction.add(modifyComputeUnits);
     const addPriorityFee = ComputeBudgetProgram.setComputeUnitPrice({
-        microLamports: 100000
+        microLamports: 1000000
       });
     transaction.add(addPriorityFee)
-    const { blockhash } = await connection.getRecentBlockhash();
+    const { blockhash } = await connection.getLatestBlockhash();
     transaction.recentBlockhash = blockhash;
     transaction.add(ix1).sign(sender)
 
